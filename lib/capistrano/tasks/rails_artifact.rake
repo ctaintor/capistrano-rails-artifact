@@ -10,7 +10,7 @@ namespace :rails_artifact do
       file_location = '/tmp/build-artifact.tar.gz'
       execute :mkdir, '-p', release_path
       execute :privileged_sudo, "rm -f #{file_location}"
-      execute :privileged_wget, "--no-check-certificate  -O '#{file_location}' '#{archive_url}' > /dev/null 2>&1 && echo $?"
+      execute :privileged_wget, "--no-check-certificate  -O '#{file_location}' '#{archive_url}' > /dev/null 2>&1"
       within release_path do
         execute(:tar, "-xzf #{file_location}")
       end
