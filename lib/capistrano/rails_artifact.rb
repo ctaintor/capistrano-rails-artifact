@@ -7,11 +7,11 @@ load File.expand_path('../tasks/rails_artifact.rake', __FILE__)
 # it will run as the current user (which is thought to be privileged enough to at least run sudo)
 SSHKit.config.command_map = Hash.new do |hash, command|
   if %w{if test time}.include? command.to_s
-    hash[command] = "sudo -u rails #{command}"
+    hash[command] = "sudo -E -u rails #{command}"
   elsif command.to_s.start_with?("privileged")
     hash[command] = command.to_s.sub(/privileged_/, '')
   else
-    hash[command] = "sudo -u rails /usr/bin/env #{command}"
+    hash[command] = "sudo -E -u rails /usr/bin/env #{command}"
   end
 end
 
@@ -19,7 +19,7 @@ end
 module OverrideTestToUseRailsUser
   def test(*args)
     if args.size == 1 && args.first.is_a?(String)
-      args[0] = "sudo -u rails #{args.first}"
+      args[0] = "sudo -E -u rails #{args.first}"
     end
     super(*args)
   end
