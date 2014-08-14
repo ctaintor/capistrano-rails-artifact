@@ -11,6 +11,7 @@ SSHKit.config.command_map = Hash.new do |hash, command|
   elsif command.to_s.start_with?("privileged")
     hash[command] = command.to_s.sub(/privileged_/, '')
   else
+    command = "bundle exec #{command}" if %w{rake rails gem}.include? command.to_s.split.first
     hash[command] = "sudo -E -u rails /usr/bin/env #{command}"
   end
 end
