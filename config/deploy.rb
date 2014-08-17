@@ -13,6 +13,7 @@ set :keep_releases, 2 #we make this low so we can test that the cleanup of relea
 
 namespace :deploy do
 
+  # This task is basically performed by Chef in our production environments
   task :create_rails_user do
     on release_roles :all do
       unless test("[ -d /home/rails ]")
