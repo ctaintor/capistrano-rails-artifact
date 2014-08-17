@@ -1,3 +1,7 @@
+# Allows cap to have its config in 'test' to reduce confusion
+set :deploy_config_path, 'test/config/deploy.rb'
+set :stage_config_path, 'test/config/deploy'
+
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
 
