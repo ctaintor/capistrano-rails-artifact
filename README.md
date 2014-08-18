@@ -7,7 +7,7 @@ new type of 'scm' for Capistrano
 
 Add this line to your application's Gemfile:
 
-    gem 'capistrano-rails-artifact'
+    gem 'capistrano-rails-artifact', git: 'ssh://git@stash.internal.machines:7999/gems/capistrano-rails-artifact.git'
 
 And then execute:
 
@@ -29,6 +29,10 @@ set :build_artifact_location, '<URL TO TAR GZ>'
 
 set :scm, :rails_artifact
 ```
+
+## Testing
+
+Testing is done by spinning up a vagrant box, deploying to it, and then checking the result.
 
 ## Contributing
 

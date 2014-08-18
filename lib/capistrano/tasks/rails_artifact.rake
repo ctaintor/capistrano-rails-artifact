@@ -9,12 +9,16 @@ namespace :rails_artifact do
       archive_url = fetch(:build_artifact_location)
       file_location = '/tmp/build-artifact.tar.gz'
       execute :mkdir, '-p', release_path
-      execute :privileged_sudo, "rm -f #{file_location}"
-      execute :privileged_wget, "--no-check-certificate  -O '#{file_location}' '#{archive_url}' > /dev/null 2>&1"
+      execute :sudo, "rm -f #{file_location}"
+      # Comment out the wget and uncomment the cp to get the tests to work (temporary workaround)
+      # execute :cp, "'#{archive_url}' '#{file_location}'"
+      execute :wget, "--no-check-certificate  -q -O '#{file_location}' '#{archive_url}'"
       within release_path do
-        execute(:tar, "-xzf #{file_location}")
+        execute :tar, "-xzf '#{file_location}'"
+        sudo :chown, "-R rails:rails_runners ."
+        sudo :chmod, "-R g+w ."
       end
-      execute :privileged_sudo, "rm #{file_location}"
+      execute :rm, file_location
     end
   end
 
