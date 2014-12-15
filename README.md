@@ -27,6 +27,9 @@ In your `config/deploy.rb`, you just need to set two variables
 ```ruby
 set :build_artifact_location, '<URL TO TAR GZ>'
 
+# The group to use for all commands (default is 'rails_runners')
+set :rails_artifact_group, 'rails_runners'
+
 set :scm, :rails_artifact
 ```
 

@@ -2,6 +2,14 @@
 
 load File.expand_path('../tasks/rails_artifact.rake', __FILE__)
 
+# Make every command run with the group set to rails_runners
+module ModifyAllCommandsToRunAsGroup
+  def group
+    "sg #{fetch(:rails_artifact_group, 'rails_runners')} -c \"%s\"" % %Q{#{yield}}
+  end
+end
+SSHKit::Command.send(:prepend, ModifyAllCommandsToRunAsGroup)
+
 # These two tasks are unnecessary for this strategy
 Rake::Task['deploy:log_revision'].clear
 Rake::Task['deploy:set_current_revision'].clear
