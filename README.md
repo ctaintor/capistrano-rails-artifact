@@ -31,7 +31,9 @@ bundle install --without development test --deployment
 bundle exec rake assets:precompile
 echo `git rev-parse HEAD` > REVISION
 mkdir -p dist
-tar -cvzf dist/setapp-release.tar.gz --exclude .git --exclude log --exclude "./vendor/bundle/ruby/2.1.0/cache" --exclude "./vendor/bundle/ruby/2.1.0/doc" --exclude .envrc --exclude dist --exclude tmp --exclude coverage --exclude features --exclude spec --exclude vagrants --exclude Vagrantfile --exclude README.md .
+tar -cvzf dist/release.tar.gz --exclude .git --exclude log --exclude "./vendor/bundle/ruby/2.1.0/cache" --exclude "./vendor/bundle/ruby/2.1.0/doc" --exclude .envrc --exclude dist --exclude tmp --exclude coverage --exclude features --exclude spec --exclude vagrants --exclude Vagrantfile --exclude README.md .
+
+# TODO: put dist/release.tar.gz somewhere that is accessible from your application machines
 ```
 
 In your `config/deploy.rb`, you just need to set two variables

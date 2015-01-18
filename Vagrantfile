@@ -15,7 +15,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.cpus = 1
     end
     script = <<BLOCK
-#These things are provided by a Chef-provisioned environment
 #Creates a simple http server to server the files in '/vagrant/test'
 cd /vagrant/test;
 nohup python -m SimpleHTTPServer 8080 >/dev/null 2>&1 &
