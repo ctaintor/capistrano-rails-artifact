@@ -1,10 +1,7 @@
-# config valid only for Capistrano 3.1
-lock '3.2.1'
-
 set :application, 'capistrano-rails-artifact'
 
 #The Vagrantfile used python to start a simple server serving contents of /vagrant/test (which is actually this project's test directory)
-set :build_artifact_location, 'http://127.0.0.1:8080/test-build-artifact.tar.gz'
+set :rails_artifact_archive_location, 'http://127.0.0.1:8080/test-build-artifact.tar.gz'
 
 set :rails_artifact_group, 'rails_runners'
 

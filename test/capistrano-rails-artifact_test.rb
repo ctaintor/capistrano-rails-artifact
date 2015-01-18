@@ -9,7 +9,7 @@ class CapistranoRailsArtifactSpec < MiniTest::Unit::TestCase
   end
 
   def teardown
-    system("vagrant destroy -f")
+    #system("vagrant destroy -f")
   end
 
   # This is the sole test that is run. Of course it'd be nicer to have more tests, but each one adds

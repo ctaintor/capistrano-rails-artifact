@@ -23,5 +23,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
 
   spec.add_dependency "capistrano", "~> 3.0"
-  spec.add_dependency "klarna_gem_tagger", ">= 2.0.0"
 end

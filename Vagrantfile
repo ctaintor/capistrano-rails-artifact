@@ -7,8 +7,8 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "deploy_target" do |deploy_target|
-    deploy_target.vm.box = "opscode_centos-6.3_chef-11.2.0.box"
-    deploy_target.vm.box_url = "http://vagrant.internal.machines/opscode/opscode_centos-6.3_chef-11.2.0.box"
+    deploy_target.vm.box = "CentOS-6.5-x86_64-v20140504.box"
+    deploy_target.vm.box_url = "https://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140504.box"
     deploy_target.vbguest.auto_update = false
     deploy_target.vm.provider "virtualbox" do |v|
       v.memory = 512
@@ -16,10 +16,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     script = <<BLOCK
 #These things are provided by a Chef-provisioned environment
-sudo groupadd rails_runners;
-sudo useradd -G rails_runners rails;
-sudo usermod -a -G rails_runners vagrant;
-
 #Creates a simple http server to server the files in '/vagrant/test'
 cd /vagrant/test;
 nohup python -m SimpleHTTPServer 8080 >/dev/null 2>&1 &

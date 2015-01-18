@@ -6,18 +6,15 @@ namespace :rails_artifact do
   desc 'Copy repo to releases'
   task :create_release do
     on release_roles :all do
-      archive_url = fetch(:build_artifact_location)
+      archive_url = fetch(:rails_artifact_archive_location)
       file_location = '/tmp/build-artifact-files/build-artifact.tar.gz'
-      execute :mkdir, '/tmp/build-artifact-files'
-      execute :mkdir, '-p', release_path
+      execute :mkdir, '-p', File.dirname(file_location)
       execute :rm, "-f #{file_location}"
+
+      execute :mkdir, '-p', release_path
       execute :wget, "--no-check-certificate  -q -O '#{file_location}' '#{archive_url}'"
       within release_path do
         execute :tar, "-xzf '#{file_location}'"
-        #TODO: need to setgid in Chef and create base structure
-        #sudo :chown, "-R rails:rails_runners ."
-        #TODO: need to set umask?
-        #sudo :chmod, "-R g+w ."
       end
       execute :rm, file_location
     end
