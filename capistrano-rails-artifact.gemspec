@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = CapistranoRailsArtifact::VERSION
   spec.authors       = ["Case Taintor"]
   spec.email         = ["case.taintor@klarna.com"]
-  spec.summary       = %q{A gem to allow you to deploy using a .tar.gz or .xz}
-  spec.description   = %q{A gem to allow you to deploy using a .tar.gz or .xz}
+  spec.summary       = %q{A gem to allow you to deploy using a .tar.gz or .tar.xz}
+  spec.description   = %q{A gem to allow you to deploy using a .tar.gz or .tar.xz}
   spec.homepage      = ""
   spec.license       = "MIT"
 
