@@ -1,6 +1,6 @@
 # CapistranoRailsArtifact
 
-A gem to allow you to package your Rails app into a .tar.gz and deploy it easily. This works by creating a
+A gem to allow you to package your Rails app into a .tar.gz or a .tar.xz and deploy it easily. This works by creating a
 new type of 'scm' for Capistrano 3.
 
 ## Installation
@@ -42,6 +42,9 @@ In your `config/deploy.rb`, you just need to set two variables
 set :rails_artifact_archive_location, '<URL TO TAR GZ>'
 
 set :scm, :rails_artifact
+
+# optional setting
+set :rails_artifact_archive_compression, 'xz' # default is 'gz'
 ```
 
 ## Testing
