@@ -7,7 +7,7 @@ namespace :rails_artifact do
   task :create_release do
     on release_roles :all do
       archive_url = fetch(:rails_artifact_archive_location)
-      compression = fetch(:rails_artifact_compression, '')
+      compression = fetch(:rails_artifact_compression, 'gz')
       bucket      = fetch(:rails_artifact_source_bucket)
 
       case compression
