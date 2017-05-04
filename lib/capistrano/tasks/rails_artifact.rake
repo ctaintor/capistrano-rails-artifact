@@ -8,7 +8,6 @@ namespace :rails_artifact do
     on release_roles :all do
       archive_url = fetch(:rails_artifact_archive_location)
       compression = fetch(:rails_artifact_compression, '')
-      release     = fetch(:rails_artifact_release_command, :wget)
       bucket      = fetch(:rails_artifact_source_bucket)
 
       case compression
