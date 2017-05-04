@@ -43,8 +43,9 @@ set :rails_artifact_archive_location, '<URL TO TAR GZ>'
 
 set :scm, :rails_artifact
 
-# optional setting
+# optional settings
 set :rails_artifact_archive_compression, 'xz' # default is 'gz'
+set :rails_artifact_source_bucket, 'my-s3-bucket-name' # if specified, aws s3 tool will be used to fetch the file from the bucket
 ```
 
 ## Testing
