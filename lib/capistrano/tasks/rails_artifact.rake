@@ -9,6 +9,7 @@ namespace :rails_artifact do
       archive_url = fetch(:rails_artifact_archive_location)
       compression = fetch(:rails_artifact_compression, 'gz')
       bucket      = fetch(:rails_artifact_source_bucket)
+      s3_options  = fetch(:rails_artifact_s3_options)
 
       case compression
         when 'gz'
@@ -33,7 +34,7 @@ namespace :rails_artifact do
       execute :mkdir, '-p', release_path
 
       if bucket
-        execute :aws, "s3 cp s3://#{bucket}/#{archive_url} #{file_location}"
+        execute :aws, "s3 cp #{s3_options} s3://#{bucket}/#{archive_url} #{file_location}"
       else
         execute :wget, "--no-check-certificate  -q -O '#{file_location}' '#{archive_url}'"
       end
